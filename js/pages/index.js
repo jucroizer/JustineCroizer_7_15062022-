@@ -48,7 +48,7 @@ async function init() {
 
 init();
 
-console.log(tabIngredients);
+// console.log(tabIngredients);
 // console.log(tabAppareil);
 // console.log(tabUstensiles);
 
@@ -161,6 +161,7 @@ function refreshRecipes(e) {
   for (data in e) {
     console.log(data);
     const ingredientsTab = Array.from(e[data].ingredients);
+    console.log(ingredientsTab);
 
     const recipeCard = document.createElement("div");
     recipeCard.setAttribute("id", e[data].id);
@@ -250,72 +251,78 @@ function refreshRecipes(e) {
   }
 }
 
-console.log(tabIngredients);
-console.log(tabAppareil);
+// console.log(tabIngredients);
+// console.log(tabAppareil);
 
-function createButton() {
-  // let tabIngredientListe = [];
-  // let tabAppareilListe = [];
-  //   let tabUstensileListe = [];
-  // for(let i = 0; i < tabIngredients.length; i++){
-  //     console.log('et la2');
-  //     for(let j = 0; j < tabIngredients[i].length; j++){
-  //         let minim = tabIngredients[i][j].ingredient.toLowerCase();
-  //         if(!tabIngredientListe.includes(minim)){
-  //             let ingredientBtn = document.createElement('button');
-  //             ingredientBtn.textContent = minim;
-  //             document.getElementById('body').appendChild(ingredientBtn);
-  //             tabIngredientListe.push(minim);
-  //         }
-  //     }
-  // }
-  //   for (let i = 0; i < tabUstensiles.length; i++) {
-  //     console.log("et la2");
-  //     for (let j = 0; j < tabUstensiles[i].length; j++) {
-  //       let minim = tabUstensiles[i][j].toLowerCase();
-  //       if (!tabUstensileListe.includes(minim)) {
-  //         let ustensilBtn = document.createElement("button");
-  //         ustensilBtn.textContent = minim;
-  //         document.getElementById("body").appendChild(ustensilBtn);
-  //         tabUstensileListe.push(minim);
-  //       }
-  //     }
-  //   }
-  // for(let i = 0; i < tabAppareil.length; i++){
-  //     console.log('et la2');
-  //     for(let j = 0; j < tabAppareil[i].length; j++){
-  //         let minim = tabAppareil[i].toLowerCase();
-  //         if(!tabAppareilListe.includes(minim)){
-  //             let appareilBtn = document.createElement('button');
-  //             appareilBtn.textContent = minim;
-  //             document.getElementById('body').appendChild(appareilBtn);
-  //             tabAppareilListe.push(minim);
-  //         }
-  //     }
-  // }
-}
+// function createButton() {
+//   // let tabIngredientListe = [];
+//   // let tabAppareilListe = [];
+//   //   let tabUstensileListe = [];
+//   // for(let i = 0; i < tabIngredients.length; i++){
+//   //     console.log('et la2');
+//   //     for(let j = 0; j < tabIngredients[i].length; j++){
+//   //         let minim = tabIngredients[i][j].ingredient.toLowerCase();
+//   //         if(!tabIngredientListe.includes(minim)){
+//   //             let ingredientBtn = document.createElement('button');
+//   //             ingredientBtn.textContent = minim;
+//   //             document.getElementById('body').appendChild(ingredientBtn);
+//   //             tabIngredientListe.push(minim);
+//   //         }
+//   //     }
+//   // }
+//   //   for (let i = 0; i < tabUstensiles.length; i++) {
+//   //     console.log("et la2");
+//   //     for (let j = 0; j < tabUstensiles[i].length; j++) {
+//   //       let minim = tabUstensiles[i][j].toLowerCase();
+//   //       if (!tabUstensileListe.includes(minim)) {
+//   //         let ustensilBtn = document.createElement("button");
+//   //         ustensilBtn.textContent = minim;
+//   //         document.getElementById("body").appendChild(ustensilBtn);
+//   //         tabUstensileListe.push(minim);
+//   //       }
+//   //     }
+//   //   }
+//   // for(let i = 0; i < tabAppareil.length; i++){
+//   //     console.log('et la2');
+//   //     for(let j = 0; j < tabAppareil[i].length; j++){
+//   //         let minim = tabAppareil[i].toLowerCase();
+//   //         if(!tabAppareilListe.includes(minim)){
+//   //             let appareilBtn = document.createElement('button');
+//   //             appareilBtn.textContent = minim;
+//   //             document.getElementById('body').appendChild(appareilBtn);
+//   //             tabAppareilListe.push(minim);
+//   //         }
+//   //     }
+//   // }
+// }
 
-setTimeout(createButton, 1000);
+// setTimeout(createButton, 1000);
 
 // Créer un selecteur de filtre
 
 // compteur pour assigner les id
 let idCount = 0;
-let tabIngredientListe = []; 
+let tabIngredientListe = [];
+
 function createIngredFilter() {
-  
   const dropdownContainer = document.createElement("div");
   dropdownContainer.setAttribute("id", "dropdown-ingredients");
 
   const inputFilter = document.createElement("input");
   inputFilter.setAttribute("type", "text");
   inputFilter.setAttribute("id", "filter");
-  inputFilter.setAttribute("class", "btn btn-secondary input-filter input-ingredient");
+  inputFilter.setAttribute(
+    "class",
+    "btn btn-secondary input-filter input-ingredient"
+  );
   inputFilter.setAttribute("placeholder", "Ingrédients");
 
   const btnDrop = document.createElement("button");
   btnDrop.setAttribute("type", "button");
-  btnDrop.setAttribute("class", "btn btn-secondary dropdown-toggle dropdown-toggle-split dropdown-filter");
+  btnDrop.setAttribute(
+    "class",
+    "btn btn-secondary dropdown-toggle dropdown-toggle-split dropdown-filter"
+  );
   btnDrop.setAttribute("id", "dropdownMenuReference");
   btnDrop.setAttribute("data-bs-toggle", "dropdown");
   btnDrop.setAttribute("aria-expanded", "false");
@@ -326,13 +333,14 @@ function createIngredFilter() {
   spanDrop.textContent = "Toggle Dropdown";
 
   const ulFilter = document.createElement("ul");
+  ulFilter.setAttribute("id", "ulfilter");
   ulFilter.setAttribute("class", "dropdown-menu");
   ulFilter.setAttribute("aria-labelledby", "dropdownMenuReference");
 
   let liFilter;
 
-    // au clik récupère le .target et donne un id a l'élément
-    // permet la création du tag
+  // au clik récupère le .target et donne un id a l'élément
+  // permet la création du tag
 
   for (let i = 0; i < tabIngredients.length; i++) {
     for (let j = 0; j < tabIngredients[i].length; j++) {
@@ -340,8 +348,8 @@ function createIngredFilter() {
 
       if (!tabIngredientListe.includes(minim)) {
         liFilter = document.createElement("li");
-        liFilter.setAttribute('id', idCount++);
-        liFilter.setAttribute('class', 'lifilter');
+        liFilter.setAttribute("id", idCount++);
+        liFilter.setAttribute("class", "lifilter");
         liFilter.textContent = minim;
         ulFilter.appendChild(liFilter);
         tabIngredientListe.push(minim);
@@ -355,6 +363,9 @@ function createIngredFilter() {
   dropdownContainer.appendChild(ulFilter);
 
   document.getElementById("filter-tab").appendChild(dropdownContainer);
+
+  // Récuperation de l'input de l'utilisateur
+  inputFilter.addEventListener("input", subFilter);
 }
 
 setTimeout(createIngredFilter, 1000);
@@ -367,12 +378,18 @@ function createAppFilter() {
   const inputFilter = document.createElement("input");
   inputFilter.setAttribute("type", "text");
   inputFilter.setAttribute("id", "filter");
-  inputFilter.setAttribute("class", "btn btn-secondary input-filter input-appareil");
+  inputFilter.setAttribute(
+    "class",
+    "btn btn-secondary input-filter input-appareil"
+  );
   inputFilter.setAttribute("placeholder", "Appareils");
 
   const btnDrop = document.createElement("button");
   btnDrop.setAttribute("type", "button");
-  btnDrop.setAttribute("class", "btn btn-secondary dropdown-toggle dropdown-toggle-split dropdown-filter btn-appareil");
+  btnDrop.setAttribute(
+    "class",
+    "btn btn-secondary dropdown-toggle dropdown-toggle-split dropdown-filter btn-appareil"
+  );
   btnDrop.setAttribute("id", "dropdownMenuReference");
   btnDrop.setAttribute("data-bs-toggle", "dropdown");
   btnDrop.setAttribute("aria-expanded", "false");
@@ -387,15 +404,15 @@ function createAppFilter() {
   ulFilter.setAttribute("aria-labelledby", "dropdownMenuReference");
 
   let liFilter;
-  
+
   for (let i = 0; i < tabAppareil.length; i++) {
     console.log("et la2");
     for (let j = 0; j < tabAppareil[i].length; j++) {
       let minim = tabAppareil[i].toLowerCase();
       if (!tabAppareilListe.includes(minim)) {
         liFilter = document.createElement("li");
-        liFilter.setAttribute('id', idCount++);
-        liFilter.setAttribute('class', 'lifilter');
+        liFilter.setAttribute("id", idCount++);
+        liFilter.setAttribute("class", "lifilter");
         liFilter.textContent = minim;
         ulFilter.appendChild(liFilter);
         tabAppareilListe.push(minim);
@@ -415,19 +432,24 @@ setTimeout(createAppFilter, 1000);
 
 let tabUstensileListe = [];
 function createUstFilter() {
-  
   const dropdownContainer = document.createElement("div");
   dropdownContainer.setAttribute("id", "dropdown-ustensils");
 
   const inputFilter = document.createElement("input");
   inputFilter.setAttribute("type", "text");
   inputFilter.setAttribute("id", "filter");
-  inputFilter.setAttribute("class", "btn btn-secondary input-filter input-ustensils");
+  inputFilter.setAttribute(
+    "class",
+    "btn btn-secondary input-filter input-ustensils"
+  );
   inputFilter.setAttribute("placeholder", "Ustensils");
 
   const btnDrop = document.createElement("button");
   btnDrop.setAttribute("type", "button");
-  btnDrop.setAttribute("class", "btn btn-secondary dropdown-toggle dropdown-toggle-split dropdown-filter btn-ustensils");
+  btnDrop.setAttribute(
+    "class",
+    "btn btn-secondary dropdown-toggle dropdown-toggle-split dropdown-filter btn-ustensils"
+  );
   btnDrop.setAttribute("id", "dropdownMenuReference");
   btnDrop.setAttribute("data-bs-toggle", "dropdown");
   btnDrop.setAttribute("aria-expanded", "false");
@@ -448,8 +470,8 @@ function createUstFilter() {
       let minim = tabUstensiles[i][j].toLowerCase();
       if (!tabUstensileListe.includes(minim)) {
         liFilter = document.createElement("li");
-        liFilter.setAttribute('id', idCount++);
-        liFilter.setAttribute('class', 'lifilter');
+        liFilter.setAttribute("id", idCount++);
+        liFilter.setAttribute("class", "lifilter");
         liFilter.textContent = minim;
         ulFilter.appendChild(liFilter);
         tabUstensileListe.push(minim);
@@ -471,39 +493,28 @@ setTimeout(createUstFilter, 1000);
  *  Objectif : Filtrer dans le filtre la recherche de l'utilisateur (ne propose que le contenu qui contient l'input utilisateur)
  */
 
-// Récuperation de l'input de l'utilisateur
-const subInputIng = document.getElementById("filter");
-subInputIng.addEventListener("input", subFilter);
-
 // Fonction de recherche après soumission
 function subFilter(e) {
+  console.log(tabIngredientListe);
   const searchRecipes = e.target.value.toLowerCase();
 
   let filterTagTab = [];
 
-  // let filterRecipesTab = tabRecipes.filter(el =>
-  //     el.name.toLowerCase().includes(searchRecipes) || el.appliance.toLowerCase().includes(searchRecipes)
-  // ); // Sert pour la deuxième implémentation
-
-  if(document.getElementsByClassName("input-ingredient")){
-    for (let recipe in tabRecipes) {
-      if (!filterTagTab.includes(tabRecipes[recipe])) {
-        if (tabRecipes[recipe].name.toLowerCase().includes(searchRecipes)) {
-          filterTagTab.push(tabRecipes[recipe]);
-          console.log(tabRecipes[recipe]);
-        }
-        if (tabRecipes[recipe].appliance.toLowerCase().includes(searchRecipes)) {
-          filterTagTab.push(tabRecipes[recipe]);
-          console.log(tabRecipes[recipe]);
+  if (document.getElementsByClassName("input-ingredient")) {
+    for (let ingredient in tabIngredientListe) {
+      if (!filterTagTab.includes(tabIngredientListe[ingredient])) {
+        if (
+          tabIngredientListe[ingredient].toLowerCase().includes(searchRecipes)
+        ) {
+          filterTagTab.push(tabIngredientListe[ingredient]);
+          console.log(tabIngredientListe[ingredient]);
         }
       }
     }
   }
 
-  
+  refreshListe(filterTagTab);
 
-  refreshRecipes(filterTagTab);
-  // refreshRecipes(filterRecipesIngredients);
 }
 
 // Création d'un tableau pour garder en mémoire la selection
@@ -513,6 +524,38 @@ function subFilter(e) {
 // réaffichage de l'ingrédient sélectionné
 
 // Meme chose pour les ustensils et les appareils
+
+function refreshListe(e) {
+  console.log(e);
+
+  const removeRecipe = document.getElementById("ulfilter");
+//   // vide la page
+  removeRecipe.innerHTML = "";
+
+
+    const filterTab = Array.from(e);
+    console.log(filterTab);
+
+    let liFilter;
+
+    // au clik récupère le .target et donne un id a l'élément
+    // permet la création du tag
+
+    for (let i = 0; i < filterTab.length; i++) {
+      console.log(filterTab.length);
+
+      
+        liFilter = document.createElement("li");
+        liFilter.setAttribute("id", idCount++);
+        liFilter.setAttribute("class", "lifilter");
+        liFilter.textContent = filterTab[i];
+        removeRecipe.appendChild(liFilter);
+      
+      
+    }
+  
+    document.getElementById("dropdown-ingredients").appendChild(removeRecipe);
+}
 
 /**
  * Objectif : faire en sorte de faire fonctionner en concordance les 3 filtres ensemble
