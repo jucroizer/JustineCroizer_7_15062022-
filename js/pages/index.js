@@ -333,7 +333,7 @@ function createIngredFilter() {
   spanDrop.textContent = "Toggle Dropdown";
 
   const ulFilter = document.createElement("ul");
-  ulFilter.setAttribute("id", "ulfilter");
+  ulFilter.setAttribute("id", "ulfilter-ing");
   ulFilter.setAttribute("class", "dropdown-menu");
   ulFilter.setAttribute("aria-labelledby", "dropdownMenuReference");
 
@@ -365,12 +365,13 @@ function createIngredFilter() {
   document.getElementById("filter-tab").appendChild(dropdownContainer);
 
   // Récuperation de l'input de l'utilisateur
-  inputFilter.addEventListener("input", subFilter);
+  inputFilter.addEventListener("input", subFilterIng);
 }
 
 setTimeout(createIngredFilter, 1000);
 
 let tabAppareilListe = [];
+
 function createAppFilter() {
   const dropdownContainer = document.createElement("div");
   dropdownContainer.setAttribute("id", "dropdown-appareil");
@@ -400,6 +401,7 @@ function createAppFilter() {
   spanDrop.textContent = "Toggle Dropdown";
 
   const ulFilter = document.createElement("ul");
+  ulFilter.setAttribute("id", "ulfilter-app");
   ulFilter.setAttribute("class", "dropdown-menu ul-appareil");
   ulFilter.setAttribute("aria-labelledby", "dropdownMenuReference");
 
@@ -426,11 +428,14 @@ function createAppFilter() {
   dropdownContainer.appendChild(ulFilter);
 
   document.getElementById("filter-tab").appendChild(dropdownContainer);
+
+  inputFilter.addEventListener("input", subFilterApp);
 }
 
 setTimeout(createAppFilter, 1000);
 
 let tabUstensileListe = [];
+
 function createUstFilter() {
   const dropdownContainer = document.createElement("div");
   dropdownContainer.setAttribute("id", "dropdown-ustensils");
@@ -460,6 +465,7 @@ function createUstFilter() {
   spanDrop.textContent = "Toggle Dropdown";
 
   const ulFilter = document.createElement("ul");
+  ulFilter.setAttribute("id", "ulfilter-ust");
   ulFilter.setAttribute("class", "dropdown-menu ul-ustensils");
   ulFilter.setAttribute("aria-labelledby", "dropdownMenuReference");
 
@@ -485,6 +491,8 @@ function createUstFilter() {
   dropdownContainer.appendChild(ulFilter);
 
   document.getElementById("filter-tab").appendChild(dropdownContainer);
+
+  inputFilter.addEventListener("input", subFilterUst);
 }
 
 setTimeout(createUstFilter, 1000);
@@ -494,8 +502,8 @@ setTimeout(createUstFilter, 1000);
  */
 
 // Fonction de recherche après soumission
-function subFilter(e) {
-  console.log(tabIngredientListe);
+function subFilterIng(e) {
+  //   console.log(tabIngredientListe);
   const searchRecipes = e.target.value.toLowerCase();
 
   let filterTagTab = [];
@@ -507,16 +515,56 @@ function subFilter(e) {
           tabIngredientListe[ingredient].toLowerCase().includes(searchRecipes)
         ) {
           filterTagTab.push(tabIngredientListe[ingredient]);
-          console.log(tabIngredientListe[ingredient]);
+          //   console.log(tabIngredientListe[ingredient]);
         }
       }
     }
   }
-
-  refreshListe(filterTagTab);
-
+  console.log(filterTagTab);
+  refreshListeIng(filterTagTab);
 }
 
+function subFilterApp(e) {
+  //   console.log(tabIngredientListe);
+  const searchRecipes = e.target.value.toLowerCase();
+
+  let filterTagTab = [];
+
+  if (document.getElementsByClassName("input-appareil")) {
+    console.log("ca fonctionne ?");
+    for (let appareil in tabAppareilListe) {
+      if (!filterTagTab.includes(tabAppareilListe[appareil])) {
+        console.log(tabAppareilListe[appareil]);
+        if (tabAppareilListe[appareil].toLowerCase().includes(searchRecipes)) {
+          filterTagTab.push(tabAppareilListe[appareil]);
+        }
+      }
+    }
+  }
+  console.log(filterTagTab);
+  refreshListeApp(filterTagTab);
+}
+
+function subFilterUst(e) {
+    //   console.log(tabIngredientListe);
+    const searchRecipes = e.target.value.toLowerCase();
+  
+    let filterTagTab = [];
+  
+    if (document.getElementsByClassName("input-ustensils")) {
+      console.log("ca fonctionne ?");
+      for (let ustensil in tabUstensileListe) {
+        if (!filterTagTab.includes(tabUstensileListe[ustensil])) {
+          console.log(tabUstensileListe[ustensil]);
+          if (tabUstensileListe[ustensil].toLowerCase().includes(searchRecipes)) {
+            filterTagTab.push(tabUstensileListe[ustensil]);
+          }
+        }
+      }
+    }
+    console.log(filterTagTab);
+    refreshListeUst(filterTagTab);
+  }
 // Création d'un tableau pour garder en mémoire la selection
 
 // Boucle for pour vérifier comparer l'entrée utilisateur et chercher une concordance puis push de la trouvaille dans le tableau du dessus
@@ -525,37 +573,89 @@ function subFilter(e) {
 
 // Meme chose pour les ustensils et les appareils
 
-function refreshListe(e) {
+function refreshListeIng(e) {
   console.log(e);
 
-  const removeRecipe = document.getElementById("ulfilter");
-//   // vide la page
+  const removeRecipe = document.getElementById("ulfilter-ing");
+  //   // vide la page
   removeRecipe.innerHTML = "";
 
+  const filterTab = Array.from(e);
+  console.log(filterTab);
 
+  let liFilter;
+
+  // au clik récupère le .target et donne un id a l'élément
+  // permet la création du tag
+
+  for (let i = 0; i < filterTab.length; i++) {
+    console.log(filterTab.length);
+
+    liFilter = document.createElement("li");
+    liFilter.setAttribute("id", idCount++);
+    liFilter.setAttribute("class", "lifilter");
+    liFilter.textContent = filterTab[i];
+    removeRecipe.appendChild(liFilter);
+  }
+
+  document.getElementById("dropdown-ingredients").appendChild(removeRecipe);
+}
+
+function refreshListeApp(e) {
+  console.log(e);
+
+  const removeRecipe = document.getElementById("ulfilter-app");
+  //   // vide la page
+  removeRecipe.innerHTML = "";
+
+  const filterTab = Array.from(e);
+  console.log(filterTab);
+
+  let liFilter;
+
+  // au clik récupère le .target et donne un id a l'élément
+  // permet la création du tag
+
+  for (let i = 0; i < filterTab.length; i++) {
+    console.log(filterTab.length);
+
+    liFilter = document.createElement("li");
+    liFilter.setAttribute("id", idCount++);
+    liFilter.setAttribute("class", "lifilter");
+    liFilter.textContent = filterTab[i];
+    removeRecipe.appendChild(liFilter);
+  }
+
+  document.getElementById("dropdown-appareil").appendChild(removeRecipe);
+}
+
+function refreshListeUst(e) {
+    console.log(e);
+  
+    const removeRecipe = document.getElementById("ulfilter-ust");
+    //   // vide la page
+    removeRecipe.innerHTML = "";
+  
     const filterTab = Array.from(e);
     console.log(filterTab);
-
+  
     let liFilter;
-
+  
     // au clik récupère le .target et donne un id a l'élément
     // permet la création du tag
-
+  
     for (let i = 0; i < filterTab.length; i++) {
       console.log(filterTab.length);
-
-      
-        liFilter = document.createElement("li");
-        liFilter.setAttribute("id", idCount++);
-        liFilter.setAttribute("class", "lifilter");
-        liFilter.textContent = filterTab[i];
-        removeRecipe.appendChild(liFilter);
-      
-      
+  
+      liFilter = document.createElement("li");
+      liFilter.setAttribute("id", idCount++);
+      liFilter.setAttribute("class", "lifilter");
+      liFilter.textContent = filterTab[i];
+      removeRecipe.appendChild(liFilter);
     }
   
-    document.getElementById("dropdown-ingredients").appendChild(removeRecipe);
-}
+    document.getElementById("dropdown-ustensils").appendChild(removeRecipe);
+  }
 
 /**
  * Objectif : faire en sorte de faire fonctionner en concordance les 3 filtres ensemble
