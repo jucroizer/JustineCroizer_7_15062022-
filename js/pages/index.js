@@ -85,7 +85,7 @@ let parentDiv = recipesSec.parentNode;
 parentDiv.insertBefore(searchB, recipesSec);
 
 const submissionBtn = document.getElementById("search");
-console.log(submissionBtn);
+// console.log(submissionBtn);
 submissionBtn.addEventListener("input", submissionSearch);
 
 // Fonction de recherche après soumission
@@ -102,11 +102,11 @@ function submissionSearch(e) {
     if (!filterRecipesTab.includes(tabRecipes[recipe])) {
       if (tabRecipes[recipe].name.toLowerCase().includes(searchRecipes)) {
         filterRecipesTab.push(tabRecipes[recipe]);
-        console.log(tabRecipes[recipe]);
+        // console.log(tabRecipes[recipe]);
       }
       if (tabRecipes[recipe].appliance.toLowerCase().includes(searchRecipes)) {
         filterRecipesTab.push(tabRecipes[recipe]);
-        console.log(tabRecipes[recipe]);
+        // console.log(tabRecipes[recipe]);
       }
     }
   }
@@ -120,7 +120,7 @@ function submissionSearch(e) {
             .includes(searchRecipes)
         ) {
           filterRecipesTab.push(tabRecipes[recipe]);
-          console.log(tabRecipes[recipe]);
+          // console.log(tabRecipes[recipe]);
         }
       }
     }
@@ -139,7 +139,7 @@ function submissionSearch(e) {
             .includes(searchRecipes)
         ) {
           filterRecipesTab.push(tabRecipes[recipe]);
-          console.log(tabRecipes[recipe]);
+          // console.log(tabRecipes[recipe]);
         }
       }
     }
@@ -159,9 +159,9 @@ function refreshRecipes(e) {
   removeRecipe.innerHTML = "";
 
   for (data in e) {
-    console.log(data);
+    // console.log(data);
     const ingredientsTab = Array.from(e[data].ingredients);
-    console.log(ingredientsTab);
+    // console.log(ingredientsTab);
 
     const recipeCard = document.createElement("div");
     recipeCard.setAttribute("id", e[data].id);
@@ -186,7 +186,7 @@ function refreshRecipes(e) {
     const nom = document.createElement("p");
     nom.textContent = e[data].name;
     nom.setAttribute("class", "recipe-title");
-    console.log(nom);
+    // console.log(nom);
 
     // const combien = document.createElement('p');
     // combien.textContent = servings;
@@ -360,7 +360,7 @@ function createAppFilter() {
   let liFilter;
 
   for (let i = 0; i < tabAppareil.length; i++) {
-    console.log("et la2");
+    // console.log("et la2");
     for (let j = 0; j < tabAppareil[i].length; j++) {
       let minim = tabAppareil[i].toLowerCase();
       if (!tabAppareilListe.includes(minim)) {
@@ -382,6 +382,7 @@ function createAppFilter() {
   document.getElementById("filter-tab").appendChild(dropdownContainer);
 
   inputFilter.addEventListener("input", subFilterApp);
+  inputFilter.addEventListener("keyup", tagsIng);
 }
 setTimeout(createAppFilter, 1000);
 
@@ -444,6 +445,7 @@ function createUstFilter() {
   document.getElementById("filter-tab").appendChild(dropdownContainer);
 
   inputFilter.addEventListener("input", subFilterUst);
+  inputFilter.addEventListener("keyup", tagsIng);
 }
 setTimeout(createUstFilter, 1000);
 
@@ -462,7 +464,7 @@ function subFilterIng(e) {
     for (let ingredient in tabIngredientListe) {
       if (!filterTagTab.includes(tabIngredientListe[ingredient])) {
         if (
-          tabIngredientListe[ingredient].toLowerCase().includes(searchRecipes)
+            tabIngredientListe[ingredient].toLowerCase().includes(searchRecipes)
         ) {
           filterTagTab.push(tabIngredientListe[ingredient]);
           //   console.log(tabIngredientListe[ingredient]);
@@ -470,8 +472,6 @@ function subFilterIng(e) {
       }
     }
   }
-  // refreshRecipesFilter(filterTagTab);
-  console.log(filterTagTab);
   refreshListeIng(filterTagTab);
 }
 
@@ -482,17 +482,17 @@ function subFilterApp(e) {
   let filterTagTab = [];
 
   if (document.getElementsByClassName("input-appareil")) {
-    console.log("ca fonctionne ?");
+    // console.log("ca fonctionne ?");
     for (let appareil in tabAppareilListe) {
       if (!filterTagTab.includes(tabAppareilListe[appareil])) {
-        console.log(tabAppareilListe[appareil]);
+        // console.log(tabAppareilListe[appareil]);
         if (tabAppareilListe[appareil].toLowerCase().includes(searchRecipes)) {
           filterTagTab.push(tabAppareilListe[appareil]);
         }
       }
     }
   }
-  console.log(filterTagTab);
+  // console.log(filterTagTab);
   refreshListeApp(filterTagTab);
 }
 
@@ -503,30 +503,30 @@ function subFilterUst(e) {
   let filterTagTab = [];
 
   if (document.getElementsByClassName("input-ustensils")) {
-    console.log("ca fonctionne ?");
+    // console.log("ca fonctionne ?");
     for (let ustensil in tabUstensileListe) {
       if (!filterTagTab.includes(tabUstensileListe[ustensil])) {
-        console.log(tabUstensileListe[ustensil]);
+        // console.log(tabUstensileListe[ustensil]);
         if (tabUstensileListe[ustensil].toLowerCase().includes(searchRecipes)) {
           filterTagTab.push(tabUstensileListe[ustensil]);
         }
       }
     }
   }
-  console.log(filterTagTab);
+  // console.log(filterTagTab);
   refreshListeUst(filterTagTab);
 }
 
 //Fonctions de réaffichage des listes
 function refreshListeIng(e) {
-  console.log(e);
+  // console.log(e);
 
   const removeRecipe = document.getElementById("ulfilter-ing");
   //   // vide la page
   removeRecipe.innerHTML = "";
 
   const filterTab = Array.from(e);
-  console.log(filterTab);
+  // console.log(filterTab);
 
   let liFilter;
 
@@ -534,7 +534,7 @@ function refreshListeIng(e) {
   // permet la création du tag
 
   for (let i = 0; i < filterTab.length; i++) {
-    console.log(filterTab.length);
+    // console.log(filterTab.length);
 
     liFilter = document.createElement("li");
     liFilter.setAttribute("id", idCount++);
@@ -547,14 +547,14 @@ function refreshListeIng(e) {
 }
 
 function refreshListeApp(e) {
-  console.log(e);
+  // console.log(e);
 
   const removeRecipe = document.getElementById("ulfilter-app");
   //   // vide la page
   removeRecipe.innerHTML = "";
 
   const filterTab = Array.from(e);
-  console.log(filterTab);
+  // console.log(filterTab);
 
   let liFilter;
 
@@ -562,7 +562,7 @@ function refreshListeApp(e) {
   // permet la création du tag
 
   for (let i = 0; i < filterTab.length; i++) {
-    console.log(filterTab.length);
+    // console.log(filterTab.length);
 
     liFilter = document.createElement("li");
     liFilter.setAttribute("id", idCount++);
@@ -575,14 +575,14 @@ function refreshListeApp(e) {
 }
 
 function refreshListeUst(e) {
-  console.log(e);
+  // console.log(e);
 
   const removeRecipe = document.getElementById("ulfilter-ust");
   //   // vide la page
   removeRecipe.innerHTML = "";
 
   const filterTab = Array.from(e);
-  console.log(filterTab);
+  // console.log(filterTab);
 
   let liFilter;
 
@@ -590,7 +590,7 @@ function refreshListeUst(e) {
   // permet la création du tag
 
   for (let i = 0; i < filterTab.length; i++) {
-    console.log(filterTab.length);
+    // console.log(filterTab.length);
 
     liFilter = document.createElement("li");
     liFilter.setAttribute("id", idCount++);
@@ -654,7 +654,6 @@ function createTag() {
 
 function remove(e) {
   window.event;
-  console.log(window.event);
 
   const target = e.target;
   const parentTarget = target.parentNode;
@@ -664,13 +663,18 @@ function remove(e) {
   let index = null;
 
   for (let tag of tags) {
-    console.log(tag);
-    console.log(child);
+    // console.log(tag);
+    // console.log(child);
     if (tag === child) {
       index = tags.indexOf(tag);
-      console.log(index);
+      // console.log(index);
       tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
       refreshRecipesFilter(tags);
+
+      if(tags.length == 0){
+        refreshRecipes(tabRecipes);
+      }
+
       parentTarget.remove();
     }
   }
@@ -683,7 +687,7 @@ function tagsIng(e) {
   if (e.key == "Enter") {
     //récupation de l'input
     let tag = e.target.value.replace(/\s+/g, " ");
-    console.log(tag);
+    // console.log(tag);
     if (tag.length > 1 && !tags.includes(tag)) {
       if (tags.length < 10) {
         tag.split(",").forEach((tag) => {
@@ -699,8 +703,7 @@ function tagsIng(e) {
 
 // Affiche les recettes en fonction des tags sélectionnées
 function refreshRecipesFilter(e) {
-  console.log(e);
-  
+  // console.log(e);
   let data = 0;
   
   const removeRecipe = document.getElementById("recipes");
@@ -712,12 +715,26 @@ function refreshRecipesFilter(e) {
   let result = [];
 
   for (let recipe in tabRecipes) {
+   
     if (!result.includes(tabRecipes[recipe])) {
-      for (let ingredient in tabRecipes[recipe].ingredients) {
-        // console.log(tabRecipes[recipe].ingredients[ingredient].ingredient)
-
+      
+      for(let i = 0; i < tabEnter.length; i++){
+          if (tabRecipes[recipe].appliance.toLowerCase().includes(tabEnter[i])) {
+          result.push(tabRecipes[recipe]);
+        }
+      }
+      
+      for (let ingredient in tabRecipes[recipe].ingredients){
         for(let i = 0; i < tabEnter.length; i++){
-          if (tabRecipes[recipe].ingredients[ingredient].ingredient.toLowerCase() == tabEnter[i]) {
+          if (tabRecipes[recipe].ingredients[ingredient].ingredient.toLowerCase().includes(tabEnter[i])) {
+            result.push(tabRecipes[recipe]);
+          }
+        }
+      }
+
+      for (let ustensil in tabRecipes[recipe].ustensils) {
+        for(let i = 0; i < tabEnter.length; i++){
+          if (tabRecipes[recipe].ustensils[ustensil].toLowerCase().includes(tabEnter[i])) {
             result.push(tabRecipes[recipe]);
             // console.log(tabRecipes[recipe]);
           }
@@ -725,13 +742,13 @@ function refreshRecipesFilter(e) {
       }
     }
   }
-  
-  // console.log(result);
+
+  console.log(result);
 
   for (data in result) {
-    console.log(data);
+    // console.log(data);
     const ingredientsTab = Array.from(result[data].ingredients);
-    console.log(ingredientsTab);
+    // console.log(ingredientsTab);
 
     const recipeCard = document.createElement("div");
     recipeCard.setAttribute("id", result[data].id);
@@ -756,7 +773,7 @@ function refreshRecipesFilter(e) {
     const nom = document.createElement("p");
     nom.textContent = result[data].name;
     nom.setAttribute("class", "recipe-title");
-    console.log(nom);
+    // console.log(nom);
 
     // const combien = document.createElement('p');
     // combien.textContent = servings;
