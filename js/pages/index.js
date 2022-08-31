@@ -91,9 +91,35 @@ function submissionSearch(e) {
   let filterRecipesTab = [];
 
   // let filterRecipesTab = tabRecipes.filter(el =>
-  //     el.name.toLowerCase().includes(searchRecipes) || el.appliance.toLowerCase().includes(searchRecipes)
-  // ); // Sert pour la deuxième implémentation
+  //     el.name.toLowerCase().includes(searchRecipes) || el.appliance.toLowerCase().includes(searchRecipes)); // Sert pour la deuxième implémentation
 
+  //console.log(filterRecipesTab);
+
+  // let ingFilter = [];
+  // let filterRecipesTabIng = tabRecipes.map(el => {
+  //   // for(let ing in el.ingredients){
+  //     // el.map(el => {
+  //       // el.ingredients.forEach(e => {
+  //       //   ingFilter.push(e.ingredient);
+
+  //       //   if(!ingFilter.includes(searchRecipes)){
+  //       //     console.log(ingFilter);
+  //       //   }
+  //       // });
+  //       el.ingredients.every(e => {
+  //         console.log(e.ingredient.toLowerCase().includes(searchRecipes))
+  //         if(e.ingredient.includes(searchRecipes)){
+  //           ingFilter.push(tabRecipes[e]);
+  //         }
+  //       })
+  //     // });
+  //   // }
+      
+  // })
+  // console.log(ingFilter);
+  // console.log(filterRecipesTabIng);
+
+  //1ere implémentation
   for (let recipe in tabRecipes) {
     if (!filterRecipesTab.includes(tabRecipes[recipe])) {
       if (tabRecipes[recipe].name.toLowerCase().includes(searchRecipes)) {
@@ -116,7 +142,6 @@ function submissionSearch(e) {
             .includes(searchRecipes)
         ) {
           filterRecipesTab.push(tabRecipes[recipe]);
-          // console.log(tabRecipes[recipe]);
         }
       }
     }
@@ -140,15 +165,13 @@ function submissionSearch(e) {
       }
     }
   }
-  // console.log(filterRecipesTab);
 
   refreshRecipes(filterRecipesTab);
-  // refreshRecipes(filterRecipesIngredients);
 }
 
 // fonction qui vide la page et remplace avec les mots clés
 function refreshRecipes(e) {
-  // console.log(e);
+  console.log(e);
   let data = 0;
 
   const removeRecipe = document.getElementById("recipes");
@@ -286,17 +309,13 @@ function createIngredFilter() {
 
   let liFilter;
 
-  // au clik récupère le .target et donne un id a l'élément
-  // permet la création du tag
-
   for (let i = 0; i < tabIngredients.length; i++) {
     for (let j = 0; j < tabIngredients[i].length; j++) {
       let minim = tabIngredients[i][j].ingredient.toLowerCase();
 
       if (!tabIngredientListe.includes(minim)) {
         liFilter = document.createElement("li");
-        // liFilter.setAttribute("id", idCount++);
-        liFilter.setAttribute("class", "lifilter");
+        liFilter.setAttribute("class", "lifilterIng");
         liFilter.textContent = minim;
         ulFilter.appendChild(liFilter);
         tabIngredientListe.push(minim);
@@ -314,7 +333,7 @@ function createIngredFilter() {
   // Récuperation de l'input de l'utilisateur
   inputFilter.addEventListener("input", subFilterIng);
 
-  const filterTagIng = document.querySelectorAll(".lifilter");
+  const filterTagIng = document.querySelectorAll(".lifilterIng");
   // console.log(filterTagIng);
   filterTagIng.forEach((tag) => {
     tag.addEventListener("click", tagsIng);
@@ -366,7 +385,7 @@ function createAppFilter() {
       if (!tabAppareilListe.includes(minim)) {
         liFilter = document.createElement("li");
         // liFilter.setAttribute("id", idCount++);
-        liFilter.setAttribute("class", "lifilter");
+        liFilter.setAttribute("class", "lifilterApp");
         liFilter.textContent = minim;
         ulFilter.appendChild(liFilter);
         tabAppareilListe.push(minim);
@@ -383,7 +402,7 @@ function createAppFilter() {
 
   inputFilter.addEventListener("input", subFilterApp);
 
-  const filterTagApp = document.querySelectorAll(".lifilter");
+  const filterTagApp = document.querySelectorAll(".lifilterApp");
   filterTagApp.forEach((tag) => {
     tag.addEventListener("click", tagsIng);
   });
@@ -433,7 +452,7 @@ function createUstFilter() {
       if (!tabUstensileListe.includes(minim)) {
         liFilter = document.createElement("li");
         // liFilter.setAttribute("id", idCount++);
-        liFilter.setAttribute("class", "lifilter");
+        liFilter.setAttribute("class", "lifilterUst");
         liFilter.textContent = minim;
         ulFilter.appendChild(liFilter);
         tabUstensileListe.push(minim);
@@ -450,7 +469,7 @@ function createUstFilter() {
 
   inputFilter.addEventListener("input", subFilterUst);
 
-  const filterTagUst = document.querySelectorAll(".lifilter");
+  const filterTagUst = document.querySelectorAll(".lifilterUst");
   filterTagUst.forEach((tag) => {
     // console.log(tag);
     tag.addEventListener("click", tagsIng);
@@ -462,26 +481,33 @@ setTimeout(createUstFilter, 1000);
  *  Objectif : Filtrer dans le filtre, la recherche de l'utilisateur (ne propose que le contenu qui contient l'input utilisateur)
  */
 
-// Fonction de recherche dans les lsites après soumission par l'utilisateur
+// Cherche une correspondance de l'input de l'utilisateur dans la liste d'ingredient
 function subFilterIng(e) {
-  //   console.log(tabIngredientListe);
   const searchRecipes = e.target.value.toLowerCase();
 
-  let filterTagTab = [];
-
+  // let filterTagTab = [];
+ 
   if (document.getElementsByClassName("input-ingredient")) {
+   // console.log('ca passe');
     for (let ingredient in tabIngredientListe) {
-      if (!filterTagTab.includes(tabIngredientListe[ingredient])) {
-        if (
-          tabIngredientListe[ingredient].toLowerCase().includes(searchRecipes)
-        ) {
-          filterTagTab.push(tabIngredientListe[ingredient]);
-          //   console.log(tabIngredientListe[ingredient]);
+     
+        if (tabIngredientListe[ingredient].toLowerCase() != searchRecipes) {
+          console.log(searchRecipes);
+          const liste = document.getElementsByClassName("lifilterIng");
+          for(let filtre in liste){
+            console.log(liste[filtre]);
+              if(liste[filtre].innerText != searchRecipes){
+                  liste[filtre].style.display = "none"; 
+              }else{
+                liste[filtre].style.display = "block";
+              }
+            
+          }
         }
-      }
     }
   }
-  refreshListeIng(filterTagTab);
+  // console.log(filterTagTab);
+  // refreshListeIng(filterTagTab);
 }
 
 function subFilterApp(e) {
@@ -502,7 +528,7 @@ function subFilterApp(e) {
     }
   }
   // console.log(filterTagTab);
-  refreshListeApp(filterTagTab);
+  // refreshListeApp(filterTagTab);
 }
 
 function subFilterUst(e) {
@@ -528,29 +554,58 @@ function subFilterUst(e) {
 
 //Fonctions de réaffichage des listes
 function refreshListeIng(e) {
-  // console.log(e);
+  console.log(e.toString().toLowerCase());
+  let ingredRefresh = [];
 
+  const filter = document.getElementsByClassName("lifilterIng");
+
+  //console.log(filter);
+  for(let i = 0; i < filter.length; i++){
+    filter[i].style.display = "block";
+  }
+  
+ 
+  for (let recipe in tabRecipes) {
+
+    if (tabRecipes[recipe].id) {
+      
+      // cherche dans mes recettes globales lesquelles correspondent aux tags selectionnés et les pousse dans un nouveau tableau
+      for (let ingredient in tabRecipes[recipe].ingredients) {
+       console.log("log des ingredients ", tabRecipes[recipe].ingredients[ingredient].ingredient.toLowerCase())
+
+        if(tabRecipes[recipe].ingredients[ingredient].ingredient.toLowerCase().includes(e.toString().toLowerCase())){
+          ingredRefresh.push(tabRecipes[recipe].ingredients);
+        }
+      }
+    
+    }
+  }
+  
+  console.log(ingredRefresh);
   const removeRecipe = document.getElementById("ulfilter-ing");
-  //   // vide la page
+  // vide la page
   removeRecipe.innerHTML = "";
 
-  const filterTab = Array.from(e);
+  const filterTab = [];
 
   let liFilter;
 
-  // au clik récupère le .target et donne un id a l'élément
-  // permet la création du tag
+  ingredRefresh.forEach(e => {
+    for (let i = 0; i < e.length; i++) {
+      filterTab.push(e[i].ingredient.toLowerCase());
+    }
+  })
 
-  for (let i = 0; i < filterTab.length; i++) {
-    // console.log(filterTab.length);
+  let newFilterTab = [...new Set(filterTab)]
 
-    liFilter = document.createElement("li");
-    // liFilter.setAttribute("id", idCount++);
-    liFilter.setAttribute("class", "lifilter");
-    liFilter.textContent = filterTab[i];
-    removeRecipe.appendChild(liFilter);
+  for (let i = 0; i < newFilterTab.length; i++) {
+        liFilter = document.createElement("li");
+        liFilter.setAttribute("class", "lifilterIng");
+        liFilter.textContent = newFilterTab[i];
+        removeRecipe.appendChild(liFilter);
   }
-  const filterTag = document.querySelectorAll(".lifilter");
+  
+  const filterTag = document.querySelectorAll(".lifilterIng");
 
   filterTag.forEach((tag) => {
     tag.addEventListener("click", tagsIng);
@@ -560,6 +615,46 @@ function refreshListeIng(e) {
 }
 
 function refreshListeApp(e) {
+
+  console.log(e);
+  // let appRefresh = [];
+
+  // const filter = document.getElementsByClassName("lifilterApp");
+
+  // //console.log(filter);
+  // for(let i = 0; i < filter.length; i++){
+  //   filter[i].style.display = "block";
+  // }
+  
+  // let newListeAppTab = [];
+ 
+  // for (let recipe in tabRecipes) {
+  //   //console.log("log du tabRecipes", tabRecipes[recipe]);
+  //   if (tabRecipes[recipe].id) {
+  //     //console.log("log de l'id ", tabRecipes[recipe].id);
+      
+  //     // cherche dans mes recettes globales lesquelles correspondent aux tags selectionnés et les pousse dans un nouveau tableau
+  //     for (let appareil in tabRecipes.appliance) {
+  //       console.log("log des appareils ", tabRecipes.appliance)
+  //       newListeAppTab.push(
+  //         tabRecipes.appliance[appareil].toLowerCase()
+  //       );
+  //     }
+  //     console.log("c'est le e ", e);
+      
+  //     // regarde dans le tableau de tags si toutes les recettes contenus dans le tableau de comparaison ont bien les bonnes correspondances 
+  //     // et push les bonnes recettes dans result pour l'affichage
+  //     if (e.every((r) => newListeAppTab.includes(r))) {
+  //       console.log(" log du tableau de nouveaux appareils ", newListeAppTab);
+  //       appRefresh.push(tabRecipes[recipe].appliance);
+  //     }
+
+  //     //console.log(newListeIngTab);
+  //   }
+  //   // console.log(newListeIngTab);
+  // }
+  // console.log(newListeAppTab);
+  // console.log(appRefresh);
 
   const removeRecipe = document.getElementById("ulfilter-app");
   // vide la page
@@ -573,12 +668,12 @@ function refreshListeApp(e) {
   // permet la création du tag
   for (let i = 0; i < filterTab.length; i++) {
     liFilter = document.createElement("li");
-    liFilter.setAttribute("class", "lifilter");
+    liFilter.setAttribute("class", "lifilterApp");
     liFilter.textContent = filterTab[i];
     removeRecipe.appendChild(liFilter);
   }
 
-  const filterTag = document.querySelectorAll(".lifilter");
+  const filterTag = document.querySelectorAll(".lifilterApp");
   filterTag.forEach((tag) => {
     tag.addEventListener("click", tagsIng);
   });
@@ -603,12 +698,12 @@ function refreshListeUst(e) {
 
     liFilter = document.createElement("li");
     // liFilter.setAttribute("id", idCount++);
-    liFilter.setAttribute("class", "lifilter");
+    liFilter.setAttribute("class", "lifilterUst");
     liFilter.textContent = filterTab[i];
     removeRecipe.appendChild(liFilter);
   }
 
-  const filterTag = document.querySelectorAll(".lifilter");
+  const filterTag = document.querySelectorAll(".lifilterUst");
   filterTag.forEach((tag) => {
     tag.addEventListener("click", tagsIng);
   });
@@ -639,7 +734,7 @@ function createTag() {
       iClose.addEventListener("click", remove);
     });
 }
-
+// Function de supression des tags
 function remove(e) {
   window.event;
 
@@ -651,8 +746,7 @@ function remove(e) {
   let index = null;
 
   for (let tag of tags) {
-    // console.log(tag);
-    // console.log(child);
+    
     if (tag === child) {
       index = tags.indexOf(tag);
       // console.log(index);
@@ -661,6 +755,9 @@ function remove(e) {
 
       if (tags.length == 0) {
         refreshRecipes(tabRecipes);
+        refreshListeIng(tabIngredients);
+        refreshListeApp(tabAppareil);
+        refreshListeUst(tabUstensiles);
       }
 
       parentTarget.remove();
@@ -672,7 +769,7 @@ let tags = [];
 
 // Récupération de l'input utilisateur (ecoute sur l'input) et création d'une carte tag
 function tagsIng(e) {
-  // console.log(e.target);
+  
   //récupation de l'input
   let tag = e.target.innerText;
   // console.log(tag);
@@ -680,6 +777,8 @@ function tagsIng(e) {
     tag.split(",").forEach((tag) => {
       tags.push(tag);
       createTag();
+      refreshListeIng(tags);
+      //refreshListeApp(tags);
       refreshRecipesFilter(tags);
     });
   }
@@ -705,7 +804,6 @@ function refreshRecipesFilter(e) {
     if (tabRecipes[recipe].id) {
       
       let newRecipeTab = [];
-    
       // cherche dans mes recettes globales lesquelles correspondent aux tags selectionnés et les pousse dans un nouveau tableau
       for (let ingredient in tabRecipes[recipe].ingredients) {
         newRecipeTab.push(
@@ -720,30 +818,19 @@ function refreshRecipesFilter(e) {
       }
 
       if(tabRecipes[recipe].appliance){
-        console.log(tabRecipes[recipe].appliance);
         newRecipeTab.push(tabRecipes[recipe].appliance.toLowerCase());
       }
 
       // regarde dans le tableau de tags si toutes les recettes contenus dans le tableau de comparaison ont bien les bonnes correspondances et push les bonnes recettes dans result pour l'affichage
       if (tabEnter.every((r) => newRecipeTab.includes(r.toLowerCase()))) {
         result.push(tabRecipes[recipe]);
-        console.log("je passe");
-      }
-
-      if (tabEnter.every((r) => newRecipeTab.includes(r.toLowerCase()))) {
-        result.push(tabRecipes[recipe]);
-        console.log("je passe");
-      }
-
-      if (tabEnter.every((r) => newRecipeTab.includes(r.toLowerCase()))) {
-        result.push(tabRecipes[recipe]);
-        console.log("je passe");
       }
     }
   }
 
+  // tableau des recettes a afficher sans les doublons 
   resultWithoutDuplicate = [...new Set(result)];
-  console.log(resultWithoutDuplicate);
+  
 
   for (data in resultWithoutDuplicate) {
 
@@ -836,24 +923,9 @@ function refreshRecipesFilter(e) {
     removeRecipe.appendChild(recipeCard);
   }
 
-  const filterTag = document.querySelectorAll(".lifilter");
+  // a faire x3
+  const filterTag = document.querySelectorAll(".lifilterIng");
   filterTag.forEach((tag) => {
     tag.addEventListener("click", tagsIng);
   });
-}
-
-let idRecipe;
-let idRecipe2 = [];
-
-function recupId() {
-  idRecipe = Array.from(document.querySelectorAll(".col-xxl-3"));
-  // console.log(idRecipe);
-  idRecipe.forEach((id) => {
-    idRecipe2.push(id.getAttribute("id"));
-  });
-  console.log(idRecipe2);
-
-  // for(let search in idRecipe2){
-  //   console.log(idRecipe2[search]);
-  // }
 }

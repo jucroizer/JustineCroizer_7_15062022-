@@ -129,7 +129,7 @@ label {
   overflow: hidden;
 }
 
-.lifilter {
+.lifilterIng, .lifilterApp, .lifilterUst {
   margin: auto 1em 0.5em 0.5em;
   font-size: 0.8em;
   width: 10em;
@@ -138,6 +138,7 @@ label {
   cursor: pointer;
   color: white;
   text-transform: capitalize;
+  /* display: block; */
 }
 
 .input-filter {
