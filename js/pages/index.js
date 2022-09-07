@@ -87,83 +87,104 @@ submissionBtn.addEventListener("input", submissionSearch);
 function submissionSearch(e) {
   const searchRecipes = e.target.value.toLowerCase();
 
-  let filterRecipesTab = [];
+  
+  // 2nde implémentation
+  
+  let filterRecipesTab = tabRecipes.filter(el =>
+      el.name.toLowerCase().includes(searchRecipes) || el.appliance.toLowerCase().includes(searchRecipes)); // Sert pour la deuxième implémentation
 
-  // let filterRecipesTab = tabRecipes.filter(el =>
-  //     el.name.toLowerCase().includes(searchRecipes) || el.appliance.toLowerCase().includes(searchRecipes)); // Sert pour la deuxième implémentation
+  let ustens = tabRecipes.filter(searchUst);
+  console.log(ustens);
 
-  //console.log(filterRecipesTab);
+  let inge = tabRecipes.filter(searchIng)
+  console.log(inge);
 
-  // let ingFilter = [];
-  // let filterRecipesTabIng = tabRecipes.map(el => {
-  //   // for(let ing in el.ingredients){
-  //     // el.map(el => {
-  //       // el.ingredients.forEach(e => {
-  //       //   ingFilter.push(e.ingredient);
+  function searchUst(){
+    for (let recipe in tabRecipes) {
+        if (
+          !filterRecipesTab.includes(
+            tabRecipes[recipe] || tabRecipes[recipe].ingredients
+          )
+        ) {
+          for (let ustensil in tabRecipes[recipe].ustensils) {
+            if (
+              tabRecipes[recipe].ustensils[ustensil]
+                .toLowerCase()
+                .includes(searchRecipes)
+            ) {
+              filterRecipesTab.push(tabRecipes[recipe]);
+              // console.log(tabRecipes[recipe]);
+            }
+          }
+        }
+      }
+  }
 
-  //       //   if(!ingFilter.includes(searchRecipes)){
-  //       //     console.log(ingFilter);
-  //       //   }
-  //       // });
-  //       el.ingredients.every(e => {
-  //         console.log(e.ingredient.toLowerCase().includes(searchRecipes))
-  //         if(e.ingredient.includes(searchRecipes)){
-  //           ingFilter.push(tabRecipes[e]);
-  //         }
-  //       })
-  //     // });
-  //   // }
-
-  // })
-  // console.log(ingFilter);
-  // console.log(filterRecipesTabIng);
+  function searchIng(){
+    for (let recipe in tabRecipes) {
+        if (!filterRecipesTab.includes(tabRecipes[recipe])) {
+          for (let ingredient in tabRecipes[recipe].ingredients) {
+            if (
+              tabRecipes[recipe].ingredients[ingredient].ingredient
+                .toLowerCase()
+                .includes(searchRecipes)
+            ) {
+              filterRecipesTab.push(tabRecipes[recipe]);
+            }
+          }
+        }
+      }
+  }
 
   //1ere implémentation
-  for (let recipe in tabRecipes) {
-    if (!filterRecipesTab.includes(tabRecipes[recipe])) {
-      if (tabRecipes[recipe].name.toLowerCase().includes(searchRecipes)) {
-        filterRecipesTab.push(tabRecipes[recipe]);
-        // console.log(tabRecipes[recipe]);
-      }
-      if (tabRecipes[recipe].appliance.toLowerCase().includes(searchRecipes)) {
-        filterRecipesTab.push(tabRecipes[recipe]);
-        // console.log(tabRecipes[recipe]);
-      }
-    }
-  }
 
-  for (let recipe in tabRecipes) {
-    if (!filterRecipesTab.includes(tabRecipes[recipe])) {
-      for (let ingredient in tabRecipes[recipe].ingredients) {
-        if (
-          tabRecipes[recipe].ingredients[ingredient].ingredient
-            .toLowerCase()
-            .includes(searchRecipes)
-        ) {
-          filterRecipesTab.push(tabRecipes[recipe]);
-        }
-      }
-    }
-  }
+  //let filterRecipesTab = [];
 
-  for (let recipe in tabRecipes) {
-    if (
-      !filterRecipesTab.includes(
-        tabRecipes[recipe] || tabRecipes[recipe].ingredients
-      )
-    ) {
-      for (let ustensil in tabRecipes[recipe].ustensils) {
-        if (
-          tabRecipes[recipe].ustensils[ustensil]
-            .toLowerCase()
-            .includes(searchRecipes)
-        ) {
-          filterRecipesTab.push(tabRecipes[recipe]);
-          // console.log(tabRecipes[recipe]);
-        }
-      }
-    }
-  }
+  // for (let recipe in tabRecipes) {
+  //   if (!filterRecipesTab.includes(tabRecipes[recipe])) {
+  //     if (tabRecipes[recipe].name.toLowerCase().includes(searchRecipes)) {
+  //       filterRecipesTab.push(tabRecipes[recipe]);
+  //       // console.log(tabRecipes[recipe]);
+  //     }
+  //     if (tabRecipes[recipe].appliance.toLowerCase().includes(searchRecipes)) {
+  //       filterRecipesTab.push(tabRecipes[recipe]);
+  //       // console.log(tabRecipes[recipe]);
+  //     }
+  //   }
+  // }
+
+  // for (let recipe in tabRecipes) {
+  //   if (!filterRecipesTab.includes(tabRecipes[recipe])) {
+  //     for (let ingredient in tabRecipes[recipe].ingredients) {
+  //       if (
+  //         tabRecipes[recipe].ingredients[ingredient].ingredient
+  //           .toLowerCase()
+  //           .includes(searchRecipes)
+  //       ) {
+  //         filterRecipesTab.push(tabRecipes[recipe]);
+  //       }
+  //     }
+  //   }
+  // }
+
+  // for (let recipe in tabRecipes) {
+  //   if (
+  //     !filterRecipesTab.includes(
+  //       tabRecipes[recipe] || tabRecipes[recipe].ingredients
+  //     )
+  //   ) {
+  //     for (let ustensil in tabRecipes[recipe].ustensils) {
+  //       if (
+  //         tabRecipes[recipe].ustensils[ustensil]
+  //           .toLowerCase()
+  //           .includes(searchRecipes)
+  //       ) {
+  //         filterRecipesTab.push(tabRecipes[recipe]);
+  //         // console.log(tabRecipes[recipe]);
+  //       }
+  //     }
+  //   }
+  // }
 
   refreshRecipes(filterRecipesTab);
 }
@@ -572,9 +593,14 @@ function subFilterUst(e) {
 }
 
 //Fonctions de réaffichage des listes en fonction des tags sélectionnés
+// let refreshAppListe = [];
+// let refreshUstListe = [];
+// let newResfreshAppListe;
+// let newRefreshUstListe;
+
 function refreshListeIng(e) {
-  console.log(tags);
-  //console.log(e.toString().toLowerCase())
+  console.log("je suis l'entrée des ing", e);
+  console.log("je suis mes tags", tags);
   let ingredRefresh = [];
 
   document.getElementsByClassName("input-ingredient").value = " ";
@@ -583,13 +609,15 @@ function refreshListeIng(e) {
     if (tabRecipes[recipe].id) {
       // cherche dans mes recettes globales lesquelles correspondent aux tags selectionnés et les pousse dans un nouveau tableau
       for (let ingredient in tabRecipes[recipe].ingredients) {
-        //console.log("log des ingredients ", tabRecipes[recipe].ingredients[ingredient].ingredient.toLowerCase())
+        //console.log("log des ingredients ", tabRecipes[recipe].ingredients[ingredient].ingredient.toLowerCase().includes(e.toString().toLowerCase()))
         if (
           tabRecipes[recipe].ingredients[ingredient].ingredient
             .toLowerCase()
             .includes(e.toString().toLowerCase())
         ) {
           ingredRefresh.push(tabRecipes[recipe].ingredients);
+          // refreshAppListe.push(tabRecipes[recipe].appliance);
+          // refreshUstListe.push(tabRecipes[recipe].ustensils)
         } 
       }
     } 
@@ -601,6 +629,7 @@ function refreshListeIng(e) {
   removeRecipe.innerHTML = "";
 
   const filterTab = [];
+  
 
   let liFilter;
 
@@ -610,7 +639,12 @@ function refreshListeIng(e) {
     }
   });
 
+
   let newFilterTab = [...new Set(filterTab)];
+  
+  // newResfreshAppListe =  [...new Set(refreshAppListe)];
+  // newRefreshUstListe = [...new Set(refreshUstListe)]
+  // console.log(newResfreshAppListe);
 
   for (let i = 0; i < newFilterTab.length; i++) {
     liFilter = document.createElement("li");
@@ -625,14 +659,24 @@ function refreshListeIng(e) {
     tag.addEventListener("click", tagsFunc);
   });
 
+  // refreshListeApp(newResfreshAppListe);
+  // refreshListeUst(newRefreshUstListe);
   document.getElementById("dropdown-ingredients").appendChild(removeRecipe);
 }
 
 function refreshListeApp(e) {
-  // console.log(e);
+  console.log(e);
   let appRefresh = [];
 
-  document.getElementsByClassName("input-appareil").value = " ";
+  //document.getElementsByClassName("input-appareil").value = " ";
+  const removeRecipe = document.getElementById("ulfilter-app");
+  // vide la page
+  removeRecipe.innerHTML = "";
+
+  let liFilter;
+
+  // let newliste = [...new Set(e)];
+  //         console.log(newliste);
 
   for (let recipe in tabRecipes) {
     if (tabRecipes[recipe].id) {
@@ -642,30 +686,16 @@ function refreshListeApp(e) {
         if (tabRecipes[recipe].appliance[appareil].toLowerCase().includes(e)) {
           appRefresh.push(tabRecipes[recipe].appliance);
         }
-        // else if ( e == undefined) {
-        //   ingredRefresh.push(tabRecipes[recipe].ingredients);
-        // }
       }
     }
   }
 
-  //console.log(appRefresh);
+  console.log(appRefresh);
+  
 
-  const removeRecipe = document.getElementById("ulfilter-app");
-  // vide la page
-  removeRecipe.innerHTML = "";
+  let newFilterTab = [...new Set(appRefresh)];
 
-  const filterTab = [];
-
-  let liFilter;
-
-  appRefresh.forEach((e) => {
-    for (let i = 0; i < e.length; i++) {
-      filterTab.push(e[i].appliance);
-    }
-  });
-
-  let newFilterTab = [...new Set(filterTab)];
+  console.log(newFilterTab);
 
   for (let i = 0; i < newFilterTab.length; i++) {
     liFilter = document.createElement("li");
@@ -673,6 +703,14 @@ function refreshListeApp(e) {
     liFilter.textContent = newFilterTab[i];
     removeRecipe.appendChild(liFilter);
   }
+
+  // for (let i = 0; i < newliste.length; i++) {
+  //   console.log(e);
+  //   liFilter = document.createElement("li");
+  //   liFilter.setAttribute("class", "lifilterApp");
+  //   liFilter.textContent = newliste[i];
+  //   removeRecipe.appendChild(liFilter);
+  // }
 
   const filterTag = document.querySelectorAll(".lifilterApp");
   filterTag.forEach((tag) => {
@@ -741,16 +779,35 @@ function refreshListeUst(e) {
  */
 
 let ulTagsIng = document.getElementById("ultags-ing");
+
 // Fonction de creation des tags
-function createTag() {
+function createTag(e) {
+  //console.log(e);
   ulTagsIng.querySelectorAll("li").forEach((li) => li.remove());
   tags
     .slice()
     .reverse()
     .forEach((tag) => {
-      console.log(tag);
+      
       let liTag = document.createElement("li");
       liTag.textContent = tag;
+      
+      switch (e) {
+        case 'lifilterIng':
+          liTag.setAttribute('class', 'tagIng');
+          break;
+        case 'lifilterApp':
+          liTag.setAttribute('class', 'tagApp');
+          // console.log(tag)
+          break;
+        case 'lifilterUst':
+          liTag.setAttribute('class', 'tagUst');
+          break;
+        default:
+          console.log(`Sorry, we are out of ${e}.`);
+      }
+      //console.log(tag);
+      
       let iClose = document.createElement("i");
       iClose.setAttribute("class", "uit uit-multiply");
 
@@ -761,15 +818,18 @@ function createTag() {
     });
 }
 
-
 // Function de supression des tags
 function remove(e) {
   window.event;
 
+  console.log(e.target.parentNode.classList.value);
   const target = e.target;
   const parentTarget = target.parentNode;
 
   let child = parentTarget.firstChild.textContent;
+
+  let tagClass = parentTarget.classList.value;
+  console.log(tagClass);
 
   let index = null;
 
@@ -779,6 +839,21 @@ function remove(e) {
       // console.log(index);
       tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
       refreshRecipesFilter(tags);
+
+      switch (tagClass) {
+        case 'tagIng':
+          refreshListeIng(tags);
+          break;
+        case 'tagApp':
+          refreshListeApp(tags);
+          // console.log(tag)
+          break;
+        case 'tagUst':
+          refreshListeUst(tags);
+          break;
+        default:
+          console.log(`Sorry, we are out of ${tagClass}.`);
+      }
       
       if (tags.length < 1) {
         refreshRecipes(tabRecipes);
@@ -798,12 +873,13 @@ function tagsFunc(e) {
 
   let classTarget = e.target.classList.value;
 
-  console.log(e.target.classList);
+  //console.log(e.target.classList);
   // console.log(tag);
   if (tag.length > 1 && !tags.includes(tag)) {
     tag.split(",").forEach((tag) => {
+      // console.log(tag);
       tags.push(tag);
-      createTag();
+      createTag(classTarget);
       refreshRecipesFilter(tags);
     });
   }
@@ -814,6 +890,7 @@ function tagsFunc(e) {
       break;
     case 'lifilterApp':
       refreshListeApp(tags);
+      // console.log(tag)
       break;
     case 'lifilterUst':
       refreshListeUst(tags);
@@ -826,7 +903,7 @@ function tagsFunc(e) {
 
 // Affiche les recettes en fonction des tags sélectionnées
 function refreshRecipesFilter(e) {
-  // console.log(e);
+  console.log(e);
   let data = 0;
 
   const removeRecipe = document.getElementById("recipes");
@@ -866,6 +943,7 @@ function refreshRecipesFilter(e) {
 
   // tableau des recettes a afficher sans les doublons
   resultWithoutDuplicate = [...new Set(result)];
+  console.log(resultWithoutDuplicate);
 
   for (data in resultWithoutDuplicate) {
     const ingredientsTab = Array.from(resultWithoutDuplicate[data].ingredients);
@@ -958,8 +1036,18 @@ function refreshRecipesFilter(e) {
   }
 
   // a faire x3
-  const filterTag = document.querySelectorAll(".lifilterIng");
-  filterTag.forEach((tag) => {
+  const filterTagIng = document.querySelectorAll(".lifilterIng");
+  filterTagIng.forEach((tag) => {
+    tag.addEventListener("click", tagsFunc);
+  });
+
+  const filterTagApp = document.querySelectorAll(".lifilterApp");
+  filterTagApp.forEach((tag) => {
+    tag.addEventListener("click", tagsFunc);
+  });
+
+  const filterTagUst = document.querySelectorAll(".lifilterUst");
+  filterTagUst.forEach((tag) => {
     tag.addEventListener("click", tagsFunc);
   });
 }
