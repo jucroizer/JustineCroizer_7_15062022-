@@ -727,13 +727,10 @@ function refreshListeUst(e) {
 
         for(let i = 0; i < e.length; i++){
 
-          // console.log("je suis le tableau d'ustensils dans le e", tabRecipes[recipe].ustensils[ustensil]);
-          // console.log("je suis e[i]", e[i]);
-
           if (tabRecipes[recipe].ustensils[ustensil].toLowerCase().includes(e[i].toLowerCase())) {
-            console.log("je suis le tableau du if ", tabRecipes[recipe].ustensils);
+            console.log("je suis le tableau du if ", tabRecipes[recipe].ustensils[ustensil]);
             
-            ustRefresh.push(tabRecipes[recipe].ustensils);
+            ustRefresh.push(tabRecipes[recipe].ustensils[ustensil].toLowerCase());
             // ing.push(tabRecipes[recipe].ingredients)
           } 
           
@@ -744,15 +741,15 @@ function refreshListeUst(e) {
 
   console.log(ustRefresh);
 
-  let filterTab = [];
+  // let filterTab = [];
 
-  ustRefresh.forEach((e) => {
-    for (let i = 0; i < e.length; i++) {
-      filterTab.push(e[i]);
-    }
-  });
+  // ustRefresh.forEach((e) => {
+  //   for (let i = 0; i < e.length; i++) {
+  //     filterTab.push(e[i]);
+  //   }
+  // });
 
-  console.log(filterTab);
+  //console.log(filterTab);
  
   const removeRecipe = document.getElementById("ulfilter-ust");
   // vide la page
@@ -760,7 +757,7 @@ function refreshListeUst(e) {
 
   let liFilter;
 
-  let newFilterTab = [...new Set(filterTab)];
+  let newFilterTab = [...new Set(ustRefresh)];
 
   for (let i = 0; i < newFilterTab.length; i++) {
     liFilter = document.createElement("li");
