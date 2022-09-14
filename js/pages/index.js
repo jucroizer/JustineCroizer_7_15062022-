@@ -613,10 +613,12 @@ function refreshListeIng(e) {
             .includes(e.toString().toLowerCase())
         ) {
           ingredRefresh.push(tabRecipes[recipe].ingredients);
+
+          ust.push(tabRecipes[recipe]);
           
-          for(let ustensil in tabRecipes[recipe].ustensils){
-            ust.push(tabRecipes[recipe].ustensils[ustensil].toLowerCase());
-          }
+          // for(let ustensil in tabRecipes[recipe].ustensils){
+          //   ust.push(tabRecipes[recipe].ustensils[ustensil].toLowerCase());
+          // }
           
           app.push(tabRecipes[recipe].appliance)
         }
@@ -625,7 +627,7 @@ function refreshListeIng(e) {
     } 
   }
 
-  
+  console.log(ust);
 
   const removeRecipe = document.getElementById("ulfilter-ing");
 
@@ -714,26 +716,23 @@ function refreshListeApp(e) {
 function refreshListeUst(e) {
   console.log("je suis le tableau d'entrée", e);
   let ustRefresh = [];
-
   //let ing = [];
 
   document.getElementsByClassName("input-ustensils").value = " ";
 
+
   for (let recipe in tabRecipes) {
     if (tabRecipes[recipe].id) {
-      // cherche dans mes recettes globales lesquelles correspondent aux tags selectionnés et les pousse dans un nouveau tableau
+      
       for (let ustensil in tabRecipes[recipe].ustensils) {
-       //console.log("je suis le tableau principal", tabRecipes[recipe].ustensils);
 
         for(let i = 0; i < e.length; i++){
-
-          if (tabRecipes[recipe].ustensils[ustensil].toLowerCase().includes(e[i].toLowerCase())) {
-            console.log("je suis le tableau du if ", tabRecipes[recipe].ustensils[ustensil]);
-            
-            ustRefresh.push(tabRecipes[recipe].ustensils[ustensil].toLowerCase());
-            // ing.push(tabRecipes[recipe].ingredients)
-          } 
+          console.log(e[i]);
+          if (tabRecipes[recipe].ustensils[ustensil].toString().toLowerCase() == e[i].toString().toLowerCase() || tabRecipes[recipe].id == e[i].id) {
           
+            ustRefresh.push(tabRecipes[recipe].ustensils);
+            
+          }
         }
       }
     }
@@ -741,15 +740,15 @@ function refreshListeUst(e) {
 
   console.log(ustRefresh);
 
-  // let filterTab = [];
+  let filterTab = [];
 
-  // ustRefresh.forEach((e) => {
-  //   for (let i = 0; i < e.length; i++) {
-  //     filterTab.push(e[i]);
-  //   }
-  // });
+  ustRefresh.forEach((e) => {
+    for (let i = 0; i < e.length; i++) {
+      filterTab.push(e[i]);
+    }
+  });
 
-  //console.log(filterTab);
+  console.log(filterTab);
  
   const removeRecipe = document.getElementById("ulfilter-ust");
   // vide la page
@@ -757,7 +756,7 @@ function refreshListeUst(e) {
 
   let liFilter;
 
-  let newFilterTab = [...new Set(ustRefresh)];
+  let newFilterTab = [...new Set(filterTab)];
 
   for (let i = 0; i < newFilterTab.length; i++) {
     liFilter = document.createElement("li");
@@ -888,7 +887,6 @@ function tagsFunc(e) {
       break;
     case 'lifilterApp':
       refreshListeApp(tags);
-      
       break;
     case 'lifilterUst':
       refreshListeUst(tags);
