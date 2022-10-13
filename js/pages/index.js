@@ -92,102 +92,102 @@ function submissionSearch(e) {
   if (searchRecipes.length >= 3) {
     // 2nde implémentation
 
-    // filterRecipesTab = tabRecipes.filter(
-    //   (el) =>
-    //     el.name.toLowerCase().includes(searchRecipes) ||
-    //     el.appliance.toLowerCase().includes(searchRecipes)
-    // ); // Sert pour la deuxième implémentation
+    filterRecipesTab = tabRecipes.filter(
+      (el) =>
+        el.name.toLowerCase().includes(searchRecipes) ||
+        el.appliance.toLowerCase().includes(searchRecipes)
+    ); // Sert pour la deuxième implémentation
 
-    // let ustens = tabRecipes.filter(searchUst);
+    let ustens = tabRecipes.filter(searchUst);
 
-    // let inge = tabRecipes.filter(searchIng);
+    let inge = tabRecipes.filter(searchIng);
 
-    // function searchUst() {
-    //   for (let recipe in tabRecipes) {
-    //     if (
-    //       !filterRecipesTab.includes(
-    //         tabRecipes[recipe] || tabRecipes[recipe].ingredients
-    //       )
-    //     ) {
-    //       for (let ustensil in tabRecipes[recipe].ustensils) {
-    //         if (
-    //           tabRecipes[recipe].ustensils[ustensil]
-    //             .toLowerCase()
-    //             .includes(searchRecipes)
-    //         ) {
-    //           filterRecipesTab.push(tabRecipes[recipe]);
-    //           // console.log(tabRecipes[recipe]);
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+    function searchUst() {
+      for (let recipe in tabRecipes) {
+        if (
+          !filterRecipesTab.includes(
+            tabRecipes[recipe] || tabRecipes[recipe].ingredients
+          )
+        ) {
+          for (let ustensil in tabRecipes[recipe].ustensils) {
+            if (
+              tabRecipes[recipe].ustensils[ustensil]
+                .toLowerCase()
+                .includes(searchRecipes)
+            ) {
+              filterRecipesTab.push(tabRecipes[recipe]);
+              // console.log(tabRecipes[recipe]);
+            }
+          }
+        }
+      }
+    }
 
-    // function searchIng() {
-    //   for (let recipe in tabRecipes) {
-    //     if (!filterRecipesTab.includes(tabRecipes[recipe])) {
-    //       for (let ingredient in tabRecipes[recipe].ingredients) {
-    //         if (
-    //           tabRecipes[recipe].ingredients[ingredient].ingredient
-    //             .toLowerCase()
-    //             .includes(searchRecipes)
-    //         ) {
-    //           filterRecipesTab.push(tabRecipes[recipe]);
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+    function searchIng() {
+      for (let recipe in tabRecipes) {
+        if (!filterRecipesTab.includes(tabRecipes[recipe])) {
+          for (let ingredient in tabRecipes[recipe].ingredients) {
+            if (
+              tabRecipes[recipe].ingredients[ingredient].ingredient
+                .toLowerCase()
+                .includes(searchRecipes)
+            ) {
+              filterRecipesTab.push(tabRecipes[recipe]);
+            }
+          }
+        }
+      }
+    }
 
     //1ere implémentation
 
-    filterRecipesTab = [];
+    // filterRecipesTab = [];
 
-    for (let recipe in tabRecipes) {
-      if (!filterRecipesTab.includes(tabRecipes[recipe])) {
-        if (tabRecipes[recipe].name.toLowerCase().includes(searchRecipes)) {
-          filterRecipesTab.push(tabRecipes[recipe]);
-          // console.log(tabRecipes[recipe]);
-        }
-        if (tabRecipes[recipe].appliance.toLowerCase().includes(searchRecipes)) {
-          filterRecipesTab.push(tabRecipes[recipe]);
-          // console.log(tabRecipes[recipe]);
-        }
-      }
-    }
+    // for (let recipe in tabRecipes) {
+    //   if (!filterRecipesTab.includes(tabRecipes[recipe])) {
+    //     if (tabRecipes[recipe].name.toLowerCase().includes(searchRecipes)) {
+    //       filterRecipesTab.push(tabRecipes[recipe]);
+    //       // console.log(tabRecipes[recipe]);
+    //     }
+    //     if (tabRecipes[recipe].appliance.toLowerCase().includes(searchRecipes)) {
+    //       filterRecipesTab.push(tabRecipes[recipe]);
+    //       // console.log(tabRecipes[recipe]);
+    //     }
+    //   }
+    // }
 
-    for (let recipe in tabRecipes) {
-      if (!filterRecipesTab.includes(tabRecipes[recipe])) {
-        for (let ingredient in tabRecipes[recipe].ingredients) {
-          if (
-            tabRecipes[recipe].ingredients[ingredient].ingredient
-              .toLowerCase()
-              .includes(searchRecipes)
-          ) {
-            filterRecipesTab.push(tabRecipes[recipe]);
-          }
-        }
-      }
-    }
+    // for (let recipe in tabRecipes) {
+    //   if (!filterRecipesTab.includes(tabRecipes[recipe])) {
+    //     for (let ingredient in tabRecipes[recipe].ingredients) {
+    //       if (
+    //         tabRecipes[recipe].ingredients[ingredient].ingredient
+    //           .toLowerCase()
+    //           .includes(searchRecipes)
+    //       ) {
+    //         filterRecipesTab.push(tabRecipes[recipe]);
+    //       }
+    //     }
+    //   }
+    // }
 
-    for (let recipe in tabRecipes) {
-      if (
-        !filterRecipesTab.includes(
-          tabRecipes[recipe] || tabRecipes[recipe].ingredients
-        )
-      ) {
-        for (let ustensil in tabRecipes[recipe].ustensils) {
-          if (
-            tabRecipes[recipe].ustensils[ustensil]
-              .toLowerCase()
-              .includes(searchRecipes)
-          ) {
-            filterRecipesTab.push(tabRecipes[recipe]);
-            // console.log(tabRecipes[recipe]);
-          }
-        }
-      }
-    }
+    // for (let recipe in tabRecipes) {
+    //   if (
+    //     !filterRecipesTab.includes(
+    //       tabRecipes[recipe] || tabRecipes[recipe].ingredients
+    //     )
+    //   ) {
+    //     for (let ustensil in tabRecipes[recipe].ustensils) {
+    //       if (
+    //         tabRecipes[recipe].ustensils[ustensil]
+    //           .toLowerCase()
+    //           .includes(searchRecipes)
+    //       ) {
+    //         filterRecipesTab.push(tabRecipes[recipe]);
+    //         // console.log(tabRecipes[recipe]);
+    //       }
+    //     }
+    //   }
+    // }
     
     displayRecipes(filterRecipesTab);
   }else{
