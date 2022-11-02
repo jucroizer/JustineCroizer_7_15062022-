@@ -200,48 +200,6 @@ function submissionSearch(e) {
 let tabIngredientListe = [];
 
 function createIngredFilter() {
-  // const dropdownContainer = document.createElement("div");
-  // dropdownContainer.setAttribute("id", "dropdown-ingredients");
-
-  // const titleFilter = document.createElement("div");
-  // titleFilter.setAttribute("class", "filtre-title");
-
-  // const titleP = document.createElement("p");
-  // titleP.textContent = "Ingredients";
-
-  // const arrowDown = document.createElement("img");
-  // arrowDown.setAttribute("id", "arrow-down-ingredients");
-  // arrowDown.setAttribute("src", "img/arrow.png");
-  // arrowDown.setAttribute("alt", "fléche du bas");
-
-  // const containerFilter = document.createElement("div");
-  // containerFilter.setAttribute("id", "filtre-input-ingredients");
-
-  // const containerInput = document.createElement("div");
-  // containerInput.setAttribute("id", "input-container");
-
-  // const inputFilter = document.createElement("input");
-  // inputFilter.setAttribute("type", "text");
-  // inputFilter.setAttribute("id", "ingredient-input");
-  // inputFilter.setAttribute("name", "ingredient-input");
-  // inputFilter.setAttribute("placeholder", "Rechercher un ingredient");
-
-  // const labelFilter = document.createElement("label");
-  // labelFilter.setAttribute("for", "ingredient-input");
-  // labelFilter.textContent = "Rechercher un ingredient";
-
-  // const arrowUp = document.createElement("img");
-  // arrowUp.setAttribute("id", "arrow-up-ingredient");
-  // arrowUp.setAttribute("src", "img/arrow-up.png");
-  // arrowUp.setAttribute("alt", "flèche vers le eau")
-
-  // const containerListe = document.createElement("div");
-  // containerListe.setAttribute("class", "container-liste");
-
-  // const ulFilter = document.createElement("ul");
-  // ulFilter.setAttribute("id", "ulfilter-ing");
-  // ulFilter.setAttribute("class", "dropdown-menu");
-  // ulFilter.setAttribute("aria-labelledby", "dropdownMenuReference");
 
   let liFilter;
 
@@ -253,29 +211,11 @@ function createIngredFilter() {
         liFilter = document.createElement("li");
         liFilter.setAttribute("class", "lifilterIng");
         liFilter.textContent = minim;
-        //ulFilter.appendChild(liFilter);
         document.getElementById("ulfilter-ing").appendChild(liFilter);
         tabIngredientListe.push(minim);
       }
     }
   }
-
-  // dropdownContainer.appendChild(titleFilter);
-  // titleFilter.appendChild(titleP);
-  // titleFilter.appendChild(arrowDown);
-  // dropdownContainer.appendChild(containerFilter);
-  // containerFilter.appendChild(containerInput);
-  // containerInput.appendChild(inputFilter);
-  // containerInput.appendChild(labelFilter);
-  // containerInput.appendChild(arrowUp);
-  // containerFilter.appendChild(containerListe);
-  // containerListe.appendChild(ulFilter);
-  // dropdownContainer.appendChild(inputFilter);
-  // dropdownContainer.appendChild(btnDrop);
-  // btnDrop.appendChild(spanDrop);
-  // dropdownContainer.appendChild(ulFilter);
-
-  // document.getElementById("filter-tab").appendChild(dropdownContainer);
 
   // Récuperation de l'input de l'utilisateur
   const inputFilter = document.getElementById("ingredient-input");
@@ -292,37 +232,6 @@ setTimeout(createIngredFilter, 1000);
 let tabAppareilListe = [];
 
 function createAppFilter() {
-  // const dropdownContainer = document.createElement("div");
-  // dropdownContainer.setAttribute("id", "dropdown-appareil");
-
-  // const inputFilter = document.createElement("input");
-  // inputFilter.setAttribute("type", "text");
-  // inputFilter.setAttribute("id", "filter");
-  // inputFilter.setAttribute(
-  //   "class",
-  //   "btn btn-secondary input-filter input-appareil"
-  // );
-  // inputFilter.setAttribute("placeholder", "Appareils");
-
-  // const btnDrop = document.createElement("button");
-  // btnDrop.setAttribute("type", "button");
-  // btnDrop.setAttribute(
-  //   "class",
-  //   "btn btn-secondary dropdown-toggle dropdown-toggle-split dropdown-filter btn-appareil"
-  // );
-  // btnDrop.setAttribute("id", "dropdownMenuReference");
-  // btnDrop.setAttribute("data-bs-toggle", "dropdown");
-  // btnDrop.setAttribute("aria-expanded", "false");
-  // btnDrop.setAttribute("data-bs-reference", "parent");
-
-  // const spanDrop = document.createElement("span");
-  // spanDrop.setAttribute("class", "visually-hidden");
-  // spanDrop.textContent = "Toggle Dropdown";
-
-  // const ulFilter = document.createElement("ul");
-  // ulFilter.setAttribute("id", "ulfilter-app");
-  // ulFilter.setAttribute("class", "dropdown-menu ul-appareil");
-  // ulFilter.setAttribute("aria-labelledby", "dropdownMenuReference");
 
   let liFilter;
 
@@ -342,12 +251,6 @@ function createAppFilter() {
     }
   }
 
-  // dropdownContainer.appendChild(inputFilter);
-  // dropdownContainer.appendChild(btnDrop);
-  // btnDrop.appendChild(spanDrop);
-  // dropdownContainer.appendChild(ulFilter);
-
-  // document.getElementById("filter-tab").appendChild(dropdownContainer);
   const inputFilter = document.getElementById("appareil-input");
   inputFilter.addEventListener("input", subFilterApp);
 
@@ -361,37 +264,6 @@ setTimeout(createAppFilter, 1000);
 let tabUstensileListe = [];
 
 function createUstFilter() {
-  // const dropdownContainer = document.createElement("div");
-  // dropdownContainer.setAttribute("id", "dropdown-ustensils");
-
-  // const inputFilter = document.createElement("input");
-  // inputFilter.setAttribute("type", "text");
-  // inputFilter.setAttribute("id", "filter");
-  // inputFilter.setAttribute(
-  //   "class",
-  //   "btn btn-secondary input-filter input-ustensils"
-  // );
-  // inputFilter.setAttribute("placeholder", "Ustensils");
-
-  // const btnDrop = document.createElement("button");
-  // btnDrop.setAttribute("type", "button");
-  // btnDrop.setAttribute(
-  //   "class",
-  //   "btn btn-secondary dropdown-toggle dropdown-toggle-split dropdown-filter btn-ustensils"
-  // );
-  // btnDrop.setAttribute("id", "dropdownMenuReference");
-  // btnDrop.setAttribute("data-bs-toggle", "dropdown");
-  // btnDrop.setAttribute("aria-expanded", "false");
-  // btnDrop.setAttribute("data-bs-reference", "parent");
-
-  // const spanDrop = document.createElement("span");
-  // spanDrop.setAttribute("class", "visually-hidden");
-  // spanDrop.textContent = "Toggle Dropdown";
-
-  // const ulFilter = document.createElement("ul");
-  // ulFilter.setAttribute("id", "ulfilter-ust");
-  // ulFilter.setAttribute("class", "dropdown-menu ul-ustensils");
-  // ulFilter.setAttribute("aria-labelledby", "dropdownMenuReference");
 
   let liFilter;
 
@@ -410,13 +282,6 @@ function createUstFilter() {
     }
   }
 
-  // dropdownContainer.appendChild(inputFilter);
-  // dropdownContainer.appendChild(btnDrop);
-  // btnDrop.appendChild(spanDrop);
-  // dropdownContainer.appendChild(ulFilter);
-
-  // document.getElementById("filter-tab").appendChild(dropdownContainer);
-
   const inputFilter = document.getElementById("ustensil-input");
   inputFilter.addEventListener("input", subFilterUst);
 
@@ -431,13 +296,14 @@ setTimeout(createUstFilter, 1000);
 /**
  *  Objectif : Filtrer dans le filtre, la recherche de l'utilisateur (ne propose que le contenu qui contient l'input utilisateur)
  */
+
 const liste = document.getElementsByClassName("lifilterIng");
 // Cherche une correspondance de l'input de l'utilisateur dans la liste d'ingredient
 function subFilterIng(e) {
   const searchRecipes = e.target.value.toLowerCase();
+  console.log(searchRecipes);
 
-  //console.log(tabIngredientListe);
-  if (document.getElementsByClassName("input-ingredient")) {
+  if (document.getElementById("ingredient-input")){
     let removedTagBack = document.querySelectorAll(".remove-tag");
     removedTagBack.forEach((e) => {
       e.style.display = "block";
@@ -445,17 +311,15 @@ function subFilterIng(e) {
     });
 
     for (let i = 0; i < liste.length; i++) {
-      //console.log(liste[filtre]);
       let currentfiltre = liste[i].innerText;
-
       if (!currentfiltre.includes(searchRecipes)) {
-        //console.log(currentfiltre);
         liste[i].classList.add("remove-tag");
       }
     }
 
     let removedTag = document.querySelectorAll(".remove-tag");
     removedTag.forEach((e) => {
+      console.log(e)
       e.style.display = "none";
     });
   }
@@ -532,7 +396,7 @@ function refreshListeIng(majRecipes) {
     });
   });
 
-  document.getElementsByClassName("input-ingredient").value = " ";
+  //document.getElementsByClassName("input-ingredient-search").value = " ";
 
   const removeRecipe = document.getElementById("ulfilter-ing");
 
@@ -587,7 +451,7 @@ function refreshListeApp(majRecipes) {
     tag.addEventListener("click", tagsFunc);
   });
 
-  document.getElementById("dropdown-appareil").appendChild(removeRecipe);
+  document.getElementById("dropdown-appareils").appendChild(removeRecipe);
 }
 
 function refreshListeUst(majRecipes) {
@@ -647,7 +511,6 @@ function createTag(e) {
           break;
         case "lifilterApp":
           liTag.setAttribute("class", "tagApp");
-          // console.log(tag)
           break;
         case "lifilterUst":
           liTag.setAttribute("class", "tagUst");
@@ -655,10 +518,10 @@ function createTag(e) {
         default:
           console.log(`Sorry, we are out of ${e}.`);
       }
-      //console.log(tag);
 
-      let iClose = document.createElement("i");
-      iClose.setAttribute("class", "uit uit-multiply");
+      let iClose = document.createElement("img");
+      iClose.setAttribute("src", "img/close.svg");
+      iClose.setAttribute("class", "close-cross")
 
       ulTagsIng.appendChild(liTag);
       liTag.appendChild(iClose);
@@ -671,8 +534,9 @@ function createTag(e) {
 function remove(event) {
   window.event;
 
-  console.log(event.target.parentNode.classList.value);
+  //console.log(event.target.parentNode.classList.value);
   const target = event.target;
+  console.log(target)
   const parentTarget = target.parentNode;
 
   let child = parentTarget.firstChild.textContent;
@@ -704,6 +568,7 @@ let tags = [];
 function tagsFunc(e) {
   //récupation de l'input
   let tag = e.target.innerText;
+  console.log(tag);
 
   let classTarget = e.target.classList.value;
 
@@ -901,11 +766,8 @@ btnUp.addEventListener("click", () =>{
 })
 
 const btnDownApp = document.querySelector("#arrow-down-appareil");
-console.log(btnDownApp);
 const listApp = document.querySelector("#filtre-input-appareils");
-console.log(listApp);
 const btnUpApp = document.querySelector("#arrow-up-appareil");
-console.log(btnUpApp);
 
 btnDownApp.addEventListener("click", () =>{
     listApp.classList.toggle('active');

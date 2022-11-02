@@ -171,7 +171,7 @@ label {
   background-color: #3282F7;
   border-radius: 5px;
   padding: 1em;
-  margin-top: -4em;
+  margin-top: -3.3em;
   margin-left: -1em; 
   z-index: 1;
 }
@@ -187,7 +187,7 @@ label {
   background-color: #68D9A4;
   border-radius: 5px;
   padding: 1em;
-  margin-top: -4em;
+  margin-top: -3.3em;
   margin-left: -1em; 
   z-index: 1;
 }
@@ -203,7 +203,7 @@ label {
   background-color: #ED6454;
   border-radius: 5px;
   padding: 1em;
-  margin-top: -4em;
+  margin-top: -3.3em;
   margin-left: -1em; 
   z-index: 1;
 }
@@ -325,6 +325,10 @@ input:focus{
 
 /* TAGS BAR */
 
+#tags-bar{
+  margin-left: 4.5em;
+}
+
 #tags-bar p {
   font-size: 15px;
 }
@@ -335,23 +339,30 @@ input:focus{
   margin: 12px 0;
 }
 #tags-bar ul li {
-  color: #dfdfdf;
+  color: #FFFFFF;
   margin: 4px 3px;
   list-style: none;
   border-radius: 5px;
-  background: #3282f7;
-  padding: 5px 8px 5px 10px;
+  padding: 0.5em 1em;
 }
-#tags-bar ul li i {
-  height: 20px;
-  width: 20px;
-  color: #e7e7e7;
+
+#tags-bar ul .tagIng {
+  background: #3282f7;
+}
+
+#tags-bar ul .tagApp {
+  background: #68D9A4;
+}
+
+#tags-bar ul .tagUst {
+  background: #ED6454;
+}
+
+#tags-bar ul li .close-cross {
   margin-left: 8px;
   font-size: 12px;
   cursor: pointer;
-  border-radius: 50%;
   justify-content: center;
-  border: 2px solid #e3e1e1;
 }
 
 
