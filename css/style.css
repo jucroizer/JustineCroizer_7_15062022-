@@ -110,14 +110,149 @@ label {
 /* Dropdowns */
 #filter-tab {
   display: flex;
-  margin-right: 40em;
+  flex-direction: row;
+  /* margin-right: 40em; */
+  margin-bottom: 2em;
 }
 
-#dropdown-ingredients {
+.filtre{
+  width: 10em;
+  height: 4em;
+  margin-right: 3em;
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 0.5em 1em;
   margin-left: 5em;
 }
 
-.dropdown-menu.show {
+.ingredients-filter{
+  background-color: #3282F7;
+}
+
+.appareils-filter{
+  background-color: #68D9A4;
+  margin-left: -1em;
+}
+
+.ustensils-filter{
+  background-color: #ED6454;
+  margin-left: -1em;
+}
+
+.filtre-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.3em;
+}
+
+.filtre-title p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0em;
+}
+
+.filtre-title img{
+  width: 1em;
+  height: 0.7em;
+  margin: auto 0;
+  cursor: pointer;
+}
+
+#filtre-input-ingredients{
+  display: none;
+}
+
+#filtre-input-ingredients.active{
+  display: block;
+  position: absolute;
+  width: fit-content;
+  background-color: #3282F7;
+  border-radius: 5px;
+  padding: 1em;
+  margin-top: -4em;
+  margin-left: -1em; 
+  z-index: 1;
+}
+
+#filtre-input-appareils{
+  display: none;
+}
+
+#filtre-input-appareils.active{
+  display: block;
+  position: absolute;
+  width: fit-content;
+  background-color: #68D9A4;
+  border-radius: 5px;
+  padding: 1em;
+  margin-top: -4em;
+  margin-left: -1em; 
+  z-index: 1;
+}
+
+#filtre-input-ustensils{
+  display: none;
+}
+
+#filtre-input-ustensils.active{
+  display: block;
+  position: absolute;
+  width: fit-content;
+  background-color: #ED6454;
+  border-radius: 5px;
+  padding: 1em;
+  margin-top: -4em;
+  margin-left: -1em; 
+  z-index: 1;
+}
+
+#filtre-input-appareils.active .container-input{
+  display: flex;
+  align-items: baseline;
+}
+
+#filtre-input-ustensils.active .container-input{
+  display: flex;
+  align-items: baseline;
+}
+
+label{
+  display: none;
+}
+
+input{
+  background-color: transparent;
+  border: none;
+  color: #FFFFFF;
+  opacity: 0.5;
+  font-weight: 700;
+  font-size: 1em;
+  padding: 1em;
+  width: 94%;
+}
+
+input:focus{
+  outline: none;
+}
+
+#arrow-up-ingredient{
+  padding-left: 2em;
+  padding-right: 1em;
+}
+
+#arrow-up-appareil{
+  padding-left: 2em;
+  padding-right: 1em;
+}
+
+#arrow-up-ustensil{
+  padding-left: 2em;
+  padding-right: 1em;
+}
+
+#ulfilter-ing{
   display: flex;
   flex-direction: column;
   column-count: 3;
@@ -127,6 +262,21 @@ label {
   border: none;
   background-color: #3282f7;
   overflow: hidden;
+  padding-left: 0.5em;
+}
+
+#ulfilter-app{
+  padding-left: 0.5em;
+}
+
+#ulfilter-ust{
+  display: flex;
+  flex-direction: column;
+  column-count: 2;
+  width: 20em;
+  flex-wrap: wrap;
+  max-height: 22em;
+  padding-left: 0.5em;
 }
 
 .lifilterIng, .lifilterApp, .lifilterUst {
@@ -139,38 +289,6 @@ label {
   color: white;
   text-transform: capitalize;
   /* display: block; */
-}
-
-.input-filter {
-  border: none;
-  border-radius: 5px 0px 0px 5px;
-  background-color: #3282f7;
-  color: white;
-}
-
-.input-filter:hover,
-.dropdown-filter:hover {
-  background-color: #3282f7;
-  color: white;
-}
-
-.input-filter:focus {
-  border-radius: 5px 0px 0px 0px;
-}
-
-.dropdown-filter {
-  border: none;
-  border-radius: 0px 5px 0px 0px;
-  background-color: #3282f7;
-  color: white;
-}
-
-.dropdown-filter:focus,
-.input-filter:focus {
-  border: none;
-  background-color: #3282f7;
-  color: white;
-  box-shadow: none;
 }
 
 /* Filtre Appareils */
@@ -207,10 +325,6 @@ label {
 
 /* TAGS BAR */
 
-#tags-bar {
-  margin: 2em;
-}
-
 #tags-bar p {
   font-size: 15px;
 }
@@ -238,4 +352,12 @@ label {
   border-radius: 50%;
   justify-content: center;
   border: 2px solid #e3e1e1;
+}
+
+
+/* Pas de recettes */
+
+.texte-vide{
+  margin: 3em auto;
+  text-align: center;
 }
