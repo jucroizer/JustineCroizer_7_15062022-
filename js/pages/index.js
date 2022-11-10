@@ -305,21 +305,24 @@ function subFilterIng(e) {
 
   if (document.getElementById("ingredient-input")){
     let removedTagBack = document.querySelectorAll(".remove-tag");
+   
     removedTagBack.forEach((e) => {
       e.style.display = "block";
       e.classList.remove("remove-tag");
     });
 
     for (let i = 0; i < liste.length; i++) {
-      let currentfiltre = liste[i].innerText;
+      let currentfiltre = liste[i].innerText.toLowerCase();
+      console.log(liste[i])
       if (!currentfiltre.includes(searchRecipes)) {
         liste[i].classList.add("remove-tag");
+        console.log(liste[i])
       }
     }
 
     let removedTag = document.querySelectorAll(".remove-tag");
+    console.log(removedTag)
     removedTag.forEach((e) => {
-      console.log(e)
       e.style.display = "none";
     });
   }
@@ -328,7 +331,6 @@ function subFilterIng(e) {
 const listeApp = document.getElementsByClassName("lifilterApp");
 
 function subFilterApp(e) {
-  //   console.log(tabIngredientListe);
   const searchRecipes = e.target.value.toLowerCase();
 
   if (document.getElementsByClassName("input-appareil")) {
@@ -339,11 +341,9 @@ function subFilterApp(e) {
     });
 
     for (let i = 0; i < listeApp.length; i++) {
-      //console.log(liste[filtre]);
-      let currentfiltre = listeApp[i].innerText;
+      let currentfiltre = listeApp[i].innerText.toLowerCase();
 
       if (!currentfiltre.includes(searchRecipes)) {
-        //console.log(currentfiltre);
         listeApp[i].classList.add("remove-tag");
       }
     }
@@ -353,8 +353,6 @@ function subFilterApp(e) {
       e.style.display = "none";
     });
   }
-
-  // document.getElementsByClassName("input-appareil").value = "";
 }
 
 const listeUst = document.getElementsByClassName("lifilterUst");
@@ -370,11 +368,9 @@ function subFilterUst(e) {
     });
 
     for (let i = 0; i < listeUst.length; i++) {
-      //console.log(liste[filtre]);
-      let currentfiltre = listeUst[i].innerText;
+      let currentfiltre = listeUst[i].innerText.toLowerCase();
 
       if (!currentfiltre.includes(searchRecipes)) {
-        //console.log(currentfiltre);
         listeUst[i].classList.add("remove-tag");
       }
     }
