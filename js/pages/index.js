@@ -58,7 +58,9 @@ function searchBar() {
   const labelInput = document.createElement("label");
   labelInput.setAttribute("for", "search");
   const iconeSearch = document.createElement("img");
-  iconeSearch.setAttribute("src", "img/search.svg");
+  iconeSearch.setAttribute("src", "img/loop.svg");
+  iconeSearch.setAttribute("class", "search-loupe");
+  iconeSearch.setAttribute("alt", "icone de loupe");
   const inputSearch = document.createElement("input");
   inputSearch.setAttribute("type", "text");
   inputSearch.setAttribute("id", "search");
@@ -66,7 +68,7 @@ function searchBar() {
 
   containerInput.appendChild(inputSearch);
   containerInput.appendChild(labelInput);
-  labelInput.appendChild(iconeSearch);
+  containerInput.appendChild(iconeSearch);
 
   //Implémentation du champs de recherche dans le body
   document.getElementById("body").appendChild(containerInput);
