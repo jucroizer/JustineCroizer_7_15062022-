@@ -494,14 +494,13 @@ let ulTagsIng = document.getElementById("ultags-ing");
 
 // Fonction de creation des tags
 function createTag(e) {
-  //console.log(e);
-  ulTagsIng.querySelectorAll("li").forEach((li) => li.remove());
-  tags
+  
+  let tag = tags
     .slice()
     .reverse()
-    .forEach((tag) => {
+      
       let liTag = document.createElement("li");
-      liTag.textContent = tag;
+      liTag.textContent = tag[0];
 
       switch (e) {
         case "lifilterIng":
@@ -525,7 +524,7 @@ function createTag(e) {
       liTag.appendChild(iClose);
 
       iClose.addEventListener("click", remove);
-    });
+
 }
 
 // Function de supression des tags
@@ -566,7 +565,7 @@ let tags = [];
 function tagsFunc(e) {
   //récupation de l'input
   let tag = e.target.innerText;
-  console.log(tag);
+  //console.log(tag);
 
   let classTarget = e.target.classList.value;
 
