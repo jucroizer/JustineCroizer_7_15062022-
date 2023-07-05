@@ -13,7 +13,7 @@ Clone this repository.
 git clone
 ```
 ## Usage
-Open the index.html file in your browser.
+Open the index.html file in your browser or use the Live Server extension in Visual Studio Code.
 
 ## Technologies
 * HTML5
